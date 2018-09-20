@@ -1,0 +1,6 @@
+---
+
+__sdr_packages:
+    - gnuradio
+    - gqrx-sdr
+    - libvolk1-bin

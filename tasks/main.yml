@@ -1,0 +1,10 @@
+---
+- name: Include OS-specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Define standard sdr packages
+  set_fact:
+      sdr_packages: "{{ __sdr_packages | list }}"
+
+- name: include os-specific setup
+  include_tasks: "setup-{{ ansible_os_family }}.yml"

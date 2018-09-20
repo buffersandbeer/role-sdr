@@ -1,0 +1,25 @@
+---
+- name: Add new repositories
+  become: true
+  apt_repository:
+      repo: "{{ item }}"
+      state: present
+  with_items:
+      - ppa:bladerf/bladerf
+      - ppa:myriadrf/drivers
+      - ppa:myriadrf/gnuradio
+      - ppa:gqrx/gqrx-sdr
+
+- name: Update apt cache
+  become: true
+  apt:
+      update_cache: yes
+      cache_valid_time: 3600
+
+- name: Ensure standard packages are installed
+  become: true
+  apt:
+      name: "{{ item }}"
+      state: present
+  with_items: "{{ sdr_packages }}"
+
